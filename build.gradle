@@ -1,7 +1,7 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.4'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 group = 'com.tbpay'
@@ -9,40 +9,47 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 task psBuild(type: GradleBuild) {
-	group = 'TBPayBuild'
-	description = 'clean and build'
-	tasks = ['clean', 'build']
+    group = 'TBPayBuild'
+    description = 'clean and build'
+    tasks = ['clean', 'build']
 }
-
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter:2.5.4'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-parent:2.5.4'
-	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-
-	//Swagger documentation library
-	implementation 'io.springfox:springfox-swagger2:2.9.2'
-	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
-
-	// javax validation
-	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
-
-	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
-
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-
-	developmentOnly 'org.springframework.boot:spring-boot-devtools:2.5.4'
-	runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
-}
-
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-parent:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.4'
+
+    runtimeOnly 'org.postgresql:postgresql:42.2.23.jre7'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
+    implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2'
+
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.5.4'
+    implementation 'junit:junit:4.13.2'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.2')
+    testImplementation('org.junit.jupiter:junit-jupiter-params:5.7.2')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.7.2')
+    testImplementation 'org.mockito:mockito-core:3.12.1'
+    testImplementation('org.mockito:mockito-junit-jupiter:3.12.1')
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.5.4')
+
+}
+
+

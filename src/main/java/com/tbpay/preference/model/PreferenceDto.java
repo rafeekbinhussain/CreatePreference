@@ -8,11 +8,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PreferenceDto {
+public class PreferenceDto implements Serializable {
+
+    private static final long serialVersionUID = 7937663434897942666L;
 
     @NotBlank(message = "User ID could not be null or Blank.")
     private String userId;
